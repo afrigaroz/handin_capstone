@@ -46,19 +46,27 @@ enhanced-xg-predictor/
 
 ## 🚀 How to Run the Project
 
-### 1. Install dependencies
+### 1. Setup Environment
+
+```bash
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/handin_capstone.git
+cd handin_capstone
+```
+
+### 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Generate the dummy model
+### 3. Generate the dummy model
 
 ```
 python build_dummy_model.py
 ```
 
-### 3. Run the prediction pipeline
+### 4. Run the prediction pipeline
 
 ```
 python predict_xg.py --match_id 661620
