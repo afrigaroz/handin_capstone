@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ⚽ Enhanced xG Prediction Pipeline — Driblab Capstone
 
 This repository contains a modular and testable pipeline for predicting **enhanced expected goals (xG)** using football event and tracking data.
@@ -71,6 +70,17 @@ python build_dummy_model.py
 ```
 python predict_xg.py --match_id 661620
 ```
+## 🖥️ Desktop Application
+### Running Desktop Version
+
+````
+source screenwatch-venv/bin/activate
+cd main
+python main.py
+# OR use launcher script:
+./run_desktop.sh #On Mac/Linux
+.\run_desktop.ps1 #On Windows
+````
 
 ---
 ## 👤 Author
