@@ -1,5 +1,5 @@
 # Enhanced xG Prediction Pipeline — Driblab Capstone 
-![Goal Prediction](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJHvLlRKGUnTUaaPsN-l_NwY-NB82qNag83w&s)
+![Goal Prediction](https://soccerment.com/wp-content/uploads/2022/04/Image-53-1024x731.png)
 
 This project builds a modular MLOps pipeline to predict whether a football shot results in a goal (`1`) or not (`0`) using XGBoost. The pipeline is structured for scalability and production-readiness.
 
