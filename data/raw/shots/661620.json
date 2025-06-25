@@ -1,0 +1,12 @@
+[
+  {"id": 101, "videoTimestamp": 100.5, "location": {"x": 89.0, "y": 35.0}, "shot": {"isGoal": false, "bodyPart": "right_foot"}},
+  {"id": 102, "videoTimestamp": 101.2, "location": {"x": 80.0, "y": 30.0}, "shot": {"isGoal": true, "bodyPart": "left_foot"}},
+  {"id": 103, "videoTimestamp": 102.5, "location": {"x": 92.0, "y": 36.0}, "shot": {"isGoal": false, "bodyPart": "head"}},
+  {"id": 104, "videoTimestamp": 103.0, "location": {"x": 85.0, "y": 32.0}, "shot": {"isGoal": true, "bodyPart": "right_foot"}},
+  {"id": 105, "videoTimestamp": 104.3, "location": {"x": 86.0, "y": 34.0}, "shot": {"isGoal": false, "bodyPart": "left_foot"}},
+  {"id": 106, "videoTimestamp": 105.1, "location": {"x": 90.0, "y": 31.0}, "shot": {"isGoal": false, "bodyPart": "right_foot"}},
+  {"id": 107, "videoTimestamp": 106.2, "location": {"x": 88.0, "y": 30.0}, "shot": {"isGoal": true, "bodyPart": "left_foot"}},
+  {"id": 108, "videoTimestamp": 107.4, "location": {"x": 91.0, "y": 33.0}, "shot": {"isGoal": false, "bodyPart": "right_foot"}},
+  {"id": 109, "videoTimestamp": 108.0, "location": {"x": 84.0, "y": 29.0}, "shot": {"isGoal": true, "bodyPart": "head"}},
+  {"id": 110, "videoTimestamp": 109.5, "location": {"x": 87.0, "y": 35.0}, "shot": {"isGoal": false, "bodyPart": "left_foot"}}
+]

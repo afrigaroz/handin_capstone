@@ -1,71 +1,30 @@
-# predict_xg.py
-
-"""
-This is the main script that simulates enhanced xG prediction.
-It uses dummy data, dummy features, and a dummy model to prove the pipeline works.
-"""
-
 import argparse
-import os
-import pandas as pd
-import joblib
-from load_input_data import find_input_pair
+from src import data_loader, data_validation, preprocessing, features, model, inference
 
-# -------------------------------------
-# Dummy feature extractor
-# -------------------------------------
-def extract_features(shot, frame):
-    """
-    Returns 5 simple features as placeholders.
-    Replace this later with real tracking-based features.
-    """
-    shot_x = shot["location"]["x"]
-    shot_y = shot["location"]["y"]
-    ball_x = frame["ball"][0]
-    ball_y = frame["ball"][1]
-    right_foot = 1 if shot["shot"]["bodyPart"] == "right_foot" else 0
+def main(args):
+    # Step 1: Load Data
+    shots_df = data_loader.load_shots(args.shots_path)
+    
+    # Step 2: Validate Data
+    data_validation.validate_shots_schema(shots_df)
+    
+    # Step 3: Preprocessing
+    shots_df = preprocessing.clean_shots(shots_df)
+    
+    # Step 4: Feature Engineering
+    X, y = features.extract_features(shots_df)
+    
+    # Step 5: Train and Save Model
+    model_path = "models/dummy_model.pkl"
+    model.train_and_save_model(X, y, model_path)
+    
+    # Step 6: Inference and Save Predictions
+    inference.run_inference(X, model_path, args.output_path)
 
-    return [shot_x, shot_y, ball_x, ball_y, right_foot]
-
-# -------------------------------------
-# Main pipeline function
-# -------------------------------------
-def predict_xg(match_id):
-    # Load aligned data
-    input_pairs = find_input_pair(
-        match_id,
-        shots_dir="shots",
-        tracking_dir="jsonls"
-    )
-
-    # Load dummy model
-    model = joblib.load("model/model.pkl")
-
-    results = []
-
-    for shot, frame in input_pairs:
-        features = extract_features(shot, frame)
-        prob = model.predict_proba([features])[0][1]
-
-        results.append({
-            "shot_id": shot["id"],
-            "videoTimestamp": shot["videoTimestamp"],
-            "enhanced_xg": round(prob, 4),
-            "isGoal": shot["shot"]["isGoal"]
-        })
-
-    # Save to CSV
-    os.makedirs("output", exist_ok=True)
-    output_path = f"output/{match_id}_predictions.csv"
-    pd.DataFrame(results).to_csv(output_path, index=False)
-    print(f"✅ Predictions saved to {output_path}")
-
-# -------------------------------------
-# Run via command line
-# -------------------------------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--match_id", required=True, help="Match ID (e.g. 661620)")
+    parser.add_argument("--shots_path", required=True)
+    parser.add_argument("--tracking_path", required=False)  # Not used in dummy
+    parser.add_argument("--output_path", required=True)
     args = parser.parse_args()
-
-    predict_xg(args.match_id)
+    main(args)

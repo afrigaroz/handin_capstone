@@ -1,0 +1,17 @@
+{"fps": 25, "teams": ["team1", "team2"]}
+{"frame": 2500, "vid_timestamp": 100.4, "ball": [88.5, 34.0], "data": {}}
+{"frame": 2501, "vid_timestamp": 100.5, "ball": [89.0, 35.0], "data": {}}
+{"frame": 2502, "vid_timestamp": 100.6, "ball": [89.2, 35.5], "data": {}}
+{"frame": 2550, "vid_timestamp": 101.1, "ball": [79.5, 29.5], "data": {}}
+{"frame": 2551, "vid_timestamp": 101.2, "ball": [80.0, 30.0], "data": {}}
+{"frame": 2552, "vid_timestamp": 101.3, "ball": [80.2, 30.2], "data": {}}
+{"frame": 2600, "vid_timestamp": 102.4, "ball": [91.5, 35.5], "data": {}}
+{"frame": 2601, "vid_timestamp": 102.5, "ball": [92.0, 36.0], "data": {}}
+{"frame": 2602, "vid_timestamp": 102.6, "ball": [92.3, 36.4], "data": {}}
+{"frame": 2650, "vid_timestamp": 103.0, "ball": [85.0, 32.0], "data": {}}
+{"frame": 2700, "vid_timestamp": 104.3, "ball": [86.0, 34.0], "data": {}}
+{"frame": 2750, "vid_timestamp": 105.1, "ball": [90.0, 31.0], "data": {}}
+{"frame": 2800, "vid_timestamp": 106.2, "ball": [88.0, 30.0], "data": {}}
+{"frame": 2850, "vid_timestamp": 107.4, "ball": [91.0, 33.0], "data": {}}
+{"frame": 2900, "vid_timestamp": 108.0, "ball": [84.0, 29.0], "data": {}}
+{"frame": 2950, "vid_timestamp": 109.5, "ball": [87.0, 35.0], "data": {}}

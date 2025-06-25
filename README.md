@@ -1,89 +1,97 @@
-# ⚽ Enhanced xG Prediction Pipeline — Driblab Capstone
+# Enhanced xG Prediction Pipeline — Driblab Capstone 
+![Goal Prediction](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJHvLlRKGUnTUaaPsN-l_NwY-NB82qNag83w&s)
 
-This repository contains a modular and testable pipeline for predicting **enhanced expected goals (xG)** using football event and tracking data.
+This project builds a modular MLOps pipeline to predict whether a football shot results in a goal (`1`) or not (`0`) using XGBoost. The pipeline is structured for scalability and production-readiness.
 
-Unlike traditional xG models that only consider shot location or body part, this project is designed to incorporate rich context — such as player positions and defensive pressure.
+### Key features:
+- End-to-end modular pipeline (data loading → inference)
+- Feature engineering on spatial shot data
+- Binary classification with XGBoost
+- Output saved as CSV for downstream use
 
----
-
-## 🎯 Objectives
-
-- Align event (shot) and tracking data using timestamps
-- Build a test pipeline that runs end-to-end
-- Deliver a structured, professional, and reproducible repo
-
----
-
-## 🧰 Tech Stack
-
-- **Python 3.8+**
-- `pandas` — data handling
-- `scikit-learn` — dummy classifier
-- `joblib` — saving/loading model
-- `json` — parsing `.json` and `.jsonl` files
-- `argparse` — command-line interface
+### Models used:
+- **XGBoostClassifier** (can be replaced with other models)
+- Dummy features (distance to goal, body part encoding) → planned to replaced
 
 ---
 
-## 🗂️ Folder Structure
-```
-enhanced-xg-predictor/
-├── shots/ # Shot data (JSON format)
-├── jsonls/ # Tracking data (JSONL format)
-├── model/
-│ └── model.pkl # Dummy model file
-├── output/
-│ └── 661620_predictions.csv
-├── predict_xg.py # Main script that runs the pipeline
-├── load_input_data.py # Aligns shot + tracking frames
-├── build_dummy_model.py # Creates dummy model for testing
-├── requirements.txt # List of required Python libraries
-└── README.md # This guide
-```
+## Setup
 
----
-
-## 🚀 How to Run the Project
-
-### 1. Setup Environment
-
+#### 1. Clone this repository  
+#### 2. Create and activate virtual environment
 ```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/handin_capstone.git
-cd handin_capstone
-```
-
-### 2. Install dependencies
-
-```bash
+conda create -n xg_goal python=3.12 pip
+conda activate xg_goal
 pip install -r requirements.txt
 ```
 
-### 3. Generate the dummy model
-
+#### 3. Place input data  
 ```
-python build_dummy_model.py
+data/raw/shots/661620.json  
+data/raw/tracking/661620_tracking_data.jsonl
 ```
-
-### 4. Run the prediction pipeline
-
-```
-python predict_xg.py --match_id 661620
-```
-## 🖥️ Desktop Application
-### Running Desktop Version
-
-````
-source screenwatch-venv/bin/activate
-cd main
-python main.py
-# OR use launcher script:
-./run_desktop.sh #On Mac/Linux
-.\run_desktop.ps1 #On Windows
-````
 
 ---
-## 👤 Author
+
+## File Structure
+```
+├── data/
+│   └── raw/
+│       ├── shots/
+│       └── tracking/
+│
+├── models/                   # Saved XGBoost model
+├── output/                   # Predictions CSV
+│
+├── src/                      # Modular pipeline components
+│   ├── __init__.py
+│   ├── data_loader.py
+│   ├── data_validation.py
+│   ├── preprocessing.py
+│   ├── features.py
+│   ├── models.py
+│   └── inference.py
+│
+├── predict_xg.py             # Pipeline entry point
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## Run the Pipeline
+
+```bash
+python predict_xg.py \
+  --shots_path data/raw/shots/661620.json \
+  --tracking_path data/raw/tracking/661620_tracking_data.jsonl \
+  --output_path output/predictions.csv
+```
+
+---
+
+## Pipeline Stages
+
+- `data_loader.py` – Load JSON shot data  
+- `data_validation.py` – Ensure expected schema  
+- `preprocessing.py` – Clean/prepare raw inputs  
+- `features.py` – Engineer features (e.g. distance to goal)  
+- `models.py` – Train and save XGBoost model  
+- `inference.py` – Predict goal or no goal (1/0)
+
+---
+
+## Next Steps
+
+- Add real tracking-based features (ball speed, player position)
+- Replace dummy features with real feayures
+- Integrate evaluation metrics and logging
+- Move configs to `config.yaml`
+- Add model versioning and MLflow integration
+
+---
+
+## Collaborators  
 ```
 Martin Gutierrez
 Diego Lopez
@@ -92,16 +100,3 @@ Yotaro Enomoto
 Africa Bajils
 Alejandro Osto
 ```
----
-
-## 🛠️ Troubleshooting
-
-| Problem                   | Solution                                              |
-|---------------------------|-------------------------------------------------------|
-| `model.pkl` not found     | Run `python build_dummy_model.py` first               |
-| `shots/*.json` not found  | Ensure the file is inside the `shots/` folder         |
-| `jsonls/*.jsonl` not found| Ensure the file is inside the `jsonls/` folder        |
-| `predict_xg.py` fails     | Make sure the match_id matches your file names        |
-
----
-
